@@ -7,5 +7,6 @@ class AppProvider {
   //as the app will use MultiProvider
   static final providers = <SingleChildWidget>[
     ChangeNotifierProvider(create: (_) => LoginViewModel()),
+    ChangeNotifierProvider(create: (_) => SignUpViewModel()),
   ];
 }

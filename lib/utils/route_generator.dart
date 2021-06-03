@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:school_project/utils/utils.dart';
-import 'package:school_project/views/login_view.dart';
+import 'package:school_project/views/views.dart';
 
 class RouteGenerator {
   ///Generates routes, extracts and passes navigation arguments.
@@ -12,6 +12,8 @@ class RouteGenerator {
         return _getPageRoute(Container());
       case LoginViewRoute:
         return _getPageRoute(LoginView());
+      case SignUpViewRoute:
+        return _getPageRoute(SignUpView());
       default:
         return _getPageRoute(_errorPage);
     }
