@@ -14,6 +14,8 @@ class RouteGenerator {
         return _getPageRoute(LoginView());
       case SignUpViewRoute:
         return _getPageRoute(SignUpView());
+      case DashboardViewRoute:
+        return _getPageRoute(DashboardView());
       default:
         return _getPageRoute(_errorPage);
     }
