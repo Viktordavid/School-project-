@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:school_project/models/dashboard_item.dart';
 import 'package:school_project/views/shared/shared.dart';
 import 'package:school_project/models/models.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DashboardView extends StatefulWidget {
   const DashboardView({Key? key}) : super(key: key);

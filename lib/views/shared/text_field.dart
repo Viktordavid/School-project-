@@ -49,8 +49,17 @@ class _CustomTextFieldState extends State<CustomTextField> {
         hintText: widget.hintText,
         labelText: widget.labelText,
         errorText: widget.errorText,
+        enabledBorder: widget.labelTextColor != null
+            ? UnderlineInputBorder(
+                borderSide:
+                    BorderSide(color: Theme.of(context).backgroundColor),
+              )
+            : null,
         focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Theme.of(context).primaryColorLight),
+          borderSide: BorderSide(
+              color: widget.labelTextColor == null
+                  ? Theme.of(context).primaryColorLight
+                  : Theme.of(context).backgroundColor),
         ),
         labelStyle: TextStyle(
             color:

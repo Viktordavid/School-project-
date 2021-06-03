@@ -16,6 +16,8 @@ class RouteGenerator {
         return _getPageRoute(SignUpView());
       case DashboardViewRoute:
         return _getPageRoute(DashboardView());
+      case ChipRegistrationViewRoute:
+        return _getPageRoute(ChipRegistrationView());
       default:
         return _getPageRoute(_errorPage);
     }
