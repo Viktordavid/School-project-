@@ -8,6 +8,7 @@ class CustomTextField extends StatelessWidget {
   final Function(String)? validator;
   final FocusNode? focusNode;
   final TextInputType? inputType;
+  final Color? labelTextColor;
 
   const CustomTextField({
     Key? key,
@@ -18,6 +19,7 @@ class CustomTextField extends StatelessWidget {
     this.validator,
     this.focusNode,
     this.inputType,
+    this.labelTextColor,
   }) : super(key: key);
 
   @override
@@ -34,6 +36,8 @@ class CustomTextField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hintText,
         labelText: labelText,
+        labelStyle: TextStyle(
+            color: labelTextColor ?? Theme.of(context).primaryColorLight),
         hintStyle: TextStyle(color: Theme.of(context).buttonColor),
       ),
     );
