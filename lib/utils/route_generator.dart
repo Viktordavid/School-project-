@@ -1,14 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:school_project/utils/utils.dart';
+import 'package:school_project/views/login_view.dart';
 
 class RouteGenerator {
   ///Generates routes, extracts and passes navigation arguments.
   static Route onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case SplashScreen:
+      case SplashScreenRoute:
         //TODO: Replace with actual SplashScreen widget
         return _getPageRoute(Container());
+      case LoginViewRoute:
+        return _getPageRoute(LoginView());
       default:
         return _getPageRoute(_errorPage);
     }

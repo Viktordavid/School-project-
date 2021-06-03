@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         primaryColorDark: Color(0xff03071e),
         primaryColorLight: Color(0xffffffff),
+        buttonColor: Color(0xfff94144),
         appBarTheme: AppBarTheme(
           color: Color(0xff001219),
         ),

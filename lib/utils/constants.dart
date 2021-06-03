@@ -1,3 +1,4 @@
 //Navigation Routes
 
-const SplashScreen = '/';
+const SplashScreenRoute = '/';
+const LoginViewRoute = '/login';
