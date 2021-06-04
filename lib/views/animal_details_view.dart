@@ -49,6 +49,7 @@ class AnimalDetailsView extends StatelessWidget {
                     label: 'Colour or Markings', desc: animalDetail.colour),
                 CustomList(
                     label: 'Notable Conditions', desc: animalDetail.conditions),
+                CustomSpacer(flex: 3),
               ],
             ),
           );

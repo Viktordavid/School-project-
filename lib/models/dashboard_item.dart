@@ -26,8 +26,8 @@ class DashboardItem {
     ),
     DashboardItem(
       icon: Icons.person,
-      title: 'MircoChips in My Details',
-      route: '',
+      title: 'My MircoChips',
+      route: MicroChipsViewRoute,
     ),
     DashboardItem(
       icon: Icons.search,

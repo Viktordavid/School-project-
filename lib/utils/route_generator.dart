@@ -18,9 +18,12 @@ class RouteGenerator {
         return _getPageRoute(DashboardView());
       case ChipRegistrationViewRoute:
         return _getPageRoute(ChipRegistrationView());
-      case AnimalDetailsViewRoute:
+      case MicroChipsViewRoute:
         return _getPageRoute(
-            AnimalDetailsView(animalDetail: AnimalDetail.animalDetail));
+            MicroChipsView(details: AnimalDetail.animalDetails));
+      case AnimalDetailsViewRoute:
+        AnimalDetail animalDetail = settings.arguments as AnimalDetail;
+        return _getPageRoute(AnimalDetailsView(animalDetail: animalDetail));
       default:
         return _getPageRoute(_errorPage);
     }

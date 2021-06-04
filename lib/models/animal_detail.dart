@@ -62,4 +62,12 @@ class AnimalDetail {
       colour: 'Black',
       conditions: 'Healthy',
       chipImplantationDate: '24/06/2021');
+
+  static List<AnimalDetail> animalDetails = [
+    animalDetail,
+    animalDetail,
+    animalDetail,
+    animalDetail,
+    animalDetail,
+  ];
 }
