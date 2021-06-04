@@ -13,6 +13,22 @@ class DashboardView extends StatefulWidget {
 
 class _DashboardViewState extends State<DashboardView> {
   List<DashboardItem> _items = DashboardItem.dashboardItems;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      resetSelectedStatus();
+    });
+  }
+
+  void resetSelectedStatus() {
+    _items.forEach((item) {
+      item.selected = false;
+    });
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return ResponsiveWidget(
@@ -44,7 +60,7 @@ class _DashboardViewState extends State<DashboardView> {
                       }
                     });
                     setState(() {});
-                    item.onTap();
+                    context.read<DashboardViewModel>().navigateTo(item.route);
                   },
                 ),
             ],

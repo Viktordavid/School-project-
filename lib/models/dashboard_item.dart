@@ -1,47 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:school_project/utils/utils.dart';
 
 class DashboardItem {
   final String title;
   final IconData icon;
-  final Function onTap;
+  final String route;
   bool? selected;
 
   DashboardItem({
     required this.title,
     required this.icon,
-    required this.onTap,
+    required this.route,
     this.selected: false,
   });
   static List<DashboardItem> dashboardItems = [
     DashboardItem(
       icon: Icons.edit,
       title: 'Register a MicroChip',
-      onTap: () {},
+      route: ChipRegistrationViewRoute,
     ),
     DashboardItem(
       icon: Icons.menu,
       title: 'Registration History',
-      onTap: () {},
+      route: '',
     ),
     DashboardItem(
       icon: Icons.person,
       title: 'MircoChips in My Details',
-      onTap: () {},
+      route: '',
     ),
     DashboardItem(
       icon: Icons.search,
       title: 'Scanner',
-      onTap: () {},
+      route: '',
     ),
     DashboardItem(
       icon: Icons.phone,
       title: 'Contact and Support',
-      onTap: () {},
+      route: '',
     ),
     DashboardItem(
       icon: Icons.exit_to_app,
       title: 'Log Out',
-      onTap: () {},
+      route: LoginViewRoute,
     ),
   ];
 }

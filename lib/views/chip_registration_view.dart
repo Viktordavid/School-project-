@@ -16,12 +16,6 @@ class _ChipRegistrationViewState extends State<ChipRegistrationView> {
     context.read<ChipRegistrationViewModel>().initialize();
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    context.read<ChipRegistrationViewModel>().disposeControllers();
-  }
-
   Future<Null> _selectDate(
     BuildContext context,
     TextEditingController controller, [
@@ -75,6 +69,7 @@ class _ChipRegistrationViewState extends State<ChipRegistrationView> {
                   style: TextStyle(
                     fontSize: 20.sp,
                     fontWeight: FontWeight.w500,
+                    color: Theme.of(context).primaryColorLight,
                   ),
                 ),
                 CustomSpacer(flex: 3),

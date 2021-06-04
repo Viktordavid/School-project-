@@ -4,4 +4,8 @@ class DashboardViewModel extends BaseViewModel {
   void exitApp() {
     navigationService.exitApp();
   }
+
+  void navigateTo(String route) {
+    navigationService.pushNamed(route);
+  }
 }

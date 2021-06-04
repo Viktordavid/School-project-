@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:school_project/views/shared/spacer.dart';
 
 class DashboardCard extends StatelessWidget {
@@ -28,9 +29,21 @@ class DashboardCard extends StatelessWidget {
           },
           selectedTileColor: Theme.of(context).highlightColor,
           tileColor: Theme.of(context).primaryColorDark,
-          leading: Icon(
-            icon,
-            color: Theme.of(context).primaryColorLight,
+          leading: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                icon,
+                color: Theme.of(context).primaryColorLight,
+              ),
+              CustomSpacer(horizontal: true),
+              VerticalDivider(
+                indent: 12.h,
+                endIndent: 12.h,
+                width: 5.w,
+                color: Theme.of(context).primaryColorLight.withOpacity(.4),
+              )
+            ],
           ),
           title: Text(
             title,
