@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:school_project/models/models.dart';
 import 'package:school_project/utils/utils.dart';
 import 'package:school_project/view-models/base_view_model.dart';
@@ -5,6 +6,10 @@ import 'package:school_project/view-models/base_view_model.dart';
 class DashboardViewModel extends BaseViewModel {
   void exitApp() {
     navigationService.exitApp();
+  }
+
+  Future<void> logout() async {
+    await FirebaseAuth.instance.signOut();
   }
 
   void navigateTo(String route) {
