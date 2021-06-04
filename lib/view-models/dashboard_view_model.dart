@@ -12,7 +12,7 @@ class DashboardViewModel extends BaseViewModel {
     await FirebaseAuth.instance.signOut();
   }
 
-  void navigateTo(String route) {
+  void navigateTo(String route) async {
     try {
       switch (route) {
         case RegistrationHistoryViewRoute:
@@ -20,6 +20,9 @@ class DashboardViewModel extends BaseViewModel {
           break;
         case MicroChipsViewRoute:
           navigationService.pushNamed(route, arg: AnimalDetail.animalDetails);
+          break;
+        case LoginViewRoute:
+          await logout();
           break;
         default:
           navigationService.pushNamed(route);

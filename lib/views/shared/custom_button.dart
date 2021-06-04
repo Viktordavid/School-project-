@@ -21,7 +21,13 @@ class Button extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: padding!.w),
       child: TextButton(
         onPressed: () => onTap(),
-        child: loading! ? CircularProgressIndicator() : Text(text),
+        child: loading!
+            ? CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  Theme.of(context).primaryColorLight,
+                ),
+              )
+            : Text(text),
       ),
     );
   }

@@ -13,9 +13,12 @@ class LoginViewModel extends BaseViewModel {
 
   Future<void> login(String email, String password, Function showDialog) async {
     try {
+      setLoading(true);
       UserCredential _ = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
+      setLoading(false);
     } on FirebaseAuthException catch (e) {
+      setLoading(false);
       if (e.code == 'user-not-found') {
         showDialog('No user found for that email. Sign up instead.');
       } else if (e.code == 'wrong-password') {
@@ -24,6 +27,7 @@ class LoginViewModel extends BaseViewModel {
         showDialog(e.message);
       }
     } catch (e) {
+      setLoading(false);
       print(e);
     }
   }
