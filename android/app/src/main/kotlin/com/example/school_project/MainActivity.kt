@@ -1,4 +1,4 @@
-package com.example.school_project
+package com.example.animaltrackerapp
 
 import io.flutter.embedding.android.FlutterActivity
 
