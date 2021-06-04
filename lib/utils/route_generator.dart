@@ -18,6 +18,8 @@ class RouteGenerator {
         return _getPageRoute(DashboardView());
       case ChipRegistrationViewRoute:
         return _getPageRoute(ChipRegistrationView());
+      case SearchViewRoute:
+        return _getPageRoute(SearchView());
       case MicroChipsViewRoute:
         List<AnimalDetail> animalDetails =
             settings.arguments as List<AnimalDetail>;

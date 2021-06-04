@@ -32,7 +32,7 @@ class DashboardItem {
     DashboardItem(
       icon: Icons.search,
       title: 'Scanner',
-      route: '',
+      route: SearchViewRoute,
     ),
     DashboardItem(
       icon: Icons.phone,

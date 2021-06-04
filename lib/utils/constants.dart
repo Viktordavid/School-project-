@@ -8,3 +8,4 @@ const ChipRegistrationViewRoute = '/register-chip';
 const AnimalDetailsViewRoute = '/animal-details';
 const MicroChipsViewRoute = '/micro-chips';
 const RegistrationHistoryViewRoute = '/history';
+const SearchViewRoute = '/micro-chip-search';

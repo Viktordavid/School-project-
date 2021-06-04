@@ -19,6 +19,9 @@ class _DashboardViewState extends State<DashboardView> {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
       resetSelectedStatus();
+      context
+          .read<SearchViewModel>()
+          .initAnimalDetails(AnimalDetail.animalDetails);
     });
   }
 
