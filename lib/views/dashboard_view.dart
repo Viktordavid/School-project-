@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:school_project/models/dashboard_item.dart';
+import 'package:school_project/view-models/view_models.dart';
 import 'package:school_project/views/shared/shared.dart';
 import 'package:school_project/models/models.dart';
 
@@ -15,6 +16,9 @@ class _DashboardViewState extends State<DashboardView> {
   @override
   Widget build(BuildContext context) {
     return ResponsiveWidget(
+      onWillPop: () {
+        context.read<DashboardViewModel>().exitApp();
+      },
       appBar: AppBar(
         title: Text('Dashboard'),
         automaticallyImplyLeading: false,

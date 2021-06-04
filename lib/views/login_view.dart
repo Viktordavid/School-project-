@@ -110,10 +110,11 @@ class _LoginViewState extends State<LoginView> {
                 if (_emailController.text.isEmpty) {
                   _emailError = 'Enter your email addresss';
                   setState(() {});
-                }
-                if (_passwordController.text.isEmpty) {
-                  _passwordError = 'Enter your email addresss';
+                } else if (_passwordController.text.isEmpty) {
+                  _passwordError = 'Enter your password';
                   setState(() {});
+                } else {
+                  context.read<LoginViewModel>().navigateToDashboard();
                 }
               },
               text: 'Login',

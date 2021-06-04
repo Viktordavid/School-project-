@@ -54,7 +54,11 @@ class _SignUpViewState extends State<SignUpView> {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveWidget(builder: (context, size) {
+    return ResponsiveWidget(
+      onWillPop: (){
+         context.read<SignUpViewModel>().goBack();
+      },
+      builder: (context, size) {
       return Container(
         padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
         height: size.height,

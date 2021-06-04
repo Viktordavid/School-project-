@@ -15,7 +15,7 @@ class ResponsiveWidget extends StatelessWidget {
       this.drawer,
       this.backgroundColor,
       this.onWillPop,
-      this.resizeToAvoidBottomInset = false})
+      this.resizeToAvoidBottomInset = true})
       : super(key: key);
   @override
   Widget build(BuildContext context) {

@@ -18,6 +18,10 @@ class LoginViewModel extends BaseViewModel {
     navigationService.pushNamed(SignUpViewRoute);
   }
 
+  void navigateToDashboard() {
+    navigationService.pushReplacementNamed(DashboardViewRoute);
+  }
+
   void exitApp() {
     navigationService.exitApp();
   }

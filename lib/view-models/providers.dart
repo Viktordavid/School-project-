@@ -9,5 +9,6 @@ class AppProvider {
     ChangeNotifierProvider(create: (_) => LoginViewModel()),
     ChangeNotifierProvider(create: (_) => SignUpViewModel()),
     ChangeNotifierProvider(create: (_) => ChipRegistrationViewModel()),
+    ChangeNotifierProvider(create: (_) => DashboardViewModel()),
   ];
 }
