@@ -52,8 +52,19 @@ class _LoginViewState extends State<LoginView> {
     _passwordFocus.dispose();
   }
 
+  Future<void> openDialog(String desc) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: Text(desc),
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
+    var loginVM = context.watch<LoginViewModel>();
     return ResponsiveWidget(onWillPop: () {
       context.read<LoginViewModel>().exitApp();
     }, builder: (context, size) {
@@ -106,6 +117,7 @@ class _LoginViewState extends State<LoginView> {
             ),
             CustomSpacer(flex: 6),
             Button(
+              loading: loginVM.loading,
               onTap: () {
                 if (_emailController.text.isEmpty) {
                   _emailError = 'Enter your email addresss';
@@ -114,7 +126,11 @@ class _LoginViewState extends State<LoginView> {
                   _passwordError = 'Enter your password';
                   setState(() {});
                 } else {
-                  context.read<LoginViewModel>().navigateToDashboard();
+                  loginVM.login(
+                    _emailController.text,
+                    _passwordController.text,
+                    openDialog,
+                  );
                 }
               },
               text: 'Login',

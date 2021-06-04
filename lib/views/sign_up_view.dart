@@ -116,8 +116,11 @@ class _SignUpViewState extends State<SignUpView> {
                   _passwordError = 'Enter your email addresss';
                   setState(() {});
                 } else if (_emailError == null && _passwordError == null) {
-                  signUpVM.register(_emailController.text,
-                      _passwordController.text, showDialog);
+                  signUpVM.register(
+                    _emailController.text,
+                    _passwordController.text,
+                    openDialog,
+                  );
                 }
               },
               text: 'Sign Up',

@@ -2,8 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:school_project/view-models/base_view_model.dart';
 
 class SignUpViewModel extends BaseViewModel {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-
   bool _loading = false;
   bool get loading => _loading;
 
@@ -20,7 +18,8 @@ class SignUpViewModel extends BaseViewModel {
       String email, String password, Function showDialog) async {
     try {
       setLoading(true);
-      UserCredential _ = await _auth.createUserWithEmailAndPassword(
+      UserCredential _ =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
