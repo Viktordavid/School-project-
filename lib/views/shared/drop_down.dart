@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:school_project/views/shared/spacer.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomDropDown extends StatefulWidget {
   final List<Map<String, String>> items;
@@ -24,35 +24,49 @@ class _CustomDropDownState extends State<CustomDropDown> {
   void initState() {
     super.initState();
     _value = widget.items.first['value']!;
+    widget.controller.text = _value;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          widget.label,
-          style: Theme.of(context)
-              .textTheme
-              .subtitle1!
-              .copyWith(color: Theme.of(context).buttonColor),
+    final double width = MediaQuery.of(context).size.width;
+    return Container(
+      width: width,
+      child: DropdownButtonFormField(
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 16.sp,
         ),
-        CustomSpacer(flex: 3),
-        DropdownButtonFormField(
-            value: _value,
-            items: widget.items
-                .map(
-                  (e) => DropdownMenuItem(
-                    child: Text(e['key']!),
-                    onTap: () {
-                      widget.controller.text = e['value']!;
-                      _value = e['value']!;
-                      setState(() {});
-                    },
-                  ),
-                )
-                .toList()),
-      ],
+        icon: Icon(
+          Icons.arrow_drop_down,
+          color: Theme.of(context).primaryColorDark,
+          size: 28,
+        ),
+        value: _value,
+        items: widget.items
+            .map(
+              (e) => DropdownMenuItem(
+                value: e['value'],
+                child: Text(e['key']!),
+              ),
+            )
+            .toList(),
+        onChanged: (String? value) {
+          widget.controller.text = value!;
+          _value = value;
+          setState(() {});
+        },
+        decoration: InputDecoration(
+          labelText: widget.label,
+          labelStyle: TextStyle(
+            fontSize: 20.sp,
+            color: Theme.of(context).buttonColor,
+          ),
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Theme.of(context).backgroundColor),
+          ),
+        ),
+      ),
     );
   }
 }
