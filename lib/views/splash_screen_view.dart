@@ -17,7 +17,7 @@ class _SplashScreenViewState extends State<SplashScreenView> {
 
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
       Future.delayed(Duration(seconds: 2)).then((value) {
-        locator<NavigationService>().pushReplacementNamed(LoginViewRoute);
+        locator<NavigationService>().pushReplacementNamed(AuthBridgeViewRoute);
       });
     });
   }
