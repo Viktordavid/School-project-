@@ -1,6 +1,6 @@
 //Navigation Routes
 
-const SplashScreenRoute = '/';
+const SplashScreenViewRoute = '/';
 const LoginViewRoute = '/login';
 const SignUpViewRoute = '/sign-up';
 const DashboardViewRoute = '/dashboard';
