@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:school_project/models/models.dart';
 import 'package:school_project/utils/utils.dart';
 import 'package:school_project/views/views.dart';
 
@@ -17,6 +18,9 @@ class RouteGenerator {
         return _getPageRoute(DashboardView());
       case ChipRegistrationViewRoute:
         return _getPageRoute(ChipRegistrationView());
+      case AnimalDetailsViewRoute:
+        return _getPageRoute(
+            AnimalDetailsView(animalDetail: AnimalDetail.animalDetail));
       default:
         return _getPageRoute(_errorPage);
     }

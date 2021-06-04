@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
           ),
           onGenerateRoute: RouteGenerator.onGenerateRoute,
           navigatorKey: locator<NavigationService>().navigatorKey,
-          initialRoute: SplashScreenViewRoute,
+          initialRoute: AnimalDetailsViewRoute,
         ),
       ),
     );
