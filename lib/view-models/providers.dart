@@ -12,5 +12,6 @@ class AppProvider {
     ChangeNotifierProvider(create: (_) => DashboardViewModel()),
     ChangeNotifierProvider(create: (_) => AnimalDetailsViewModel()),
     ChangeNotifierProvider(create: (_) => MicroChipsViewModel()),
+    ChangeNotifierProvider(create: (_) => RegistrationHistoryViewModel()),
   ];
 }

@@ -22,7 +22,7 @@ class DashboardItem {
     DashboardItem(
       icon: Icons.menu,
       title: 'Registration History',
-      route: '',
+      route: RegistrationHistoryViewRoute,
     ),
     DashboardItem(
       icon: Icons.person,
