@@ -10,74 +10,49 @@ class ChipRegistrationView extends StatefulWidget {
 }
 
 class _ChipRegistrationViewState extends State<ChipRegistrationView> {
-  late TextEditingController _chipNoController;
-  late FocusNode _chipNoFocusNode;
-  late TextEditingController _nameController;
-  late FocusNode _nameFocusNode;
-  late TextEditingController _specieController;
-  late FocusNode _specieFocusNode;
-  late TextEditingController _breedController;
-  late FocusNode _breedFocusNode;
-  late TextEditingController _colorController;
-  late FocusNode _colorFocusNode;
-  late TextEditingController _conditionsController;
-  late FocusNode _conditionsFocusNode;
-  late TextEditingController _dobController;
-  late FocusNode _dobFocusNode;
-  late TextEditingController _implantationDateController;
-  late FocusNode _implantationDateFocusNode;
-  late TextEditingController _genderController;
-  late TextEditingController _neuteredController;
-
   @override
   void initState() {
     super.initState();
-    _chipNoController = TextEditingController();
-    _chipNoFocusNode = FocusNode();
-    _nameController = TextEditingController();
-    _nameFocusNode = FocusNode();
-    _specieController = TextEditingController();
-    _specieFocusNode = FocusNode();
-    _breedController = TextEditingController();
-    _breedFocusNode = FocusNode();
-    _colorController = TextEditingController();
-    _colorFocusNode = FocusNode();
-    _conditionsController = TextEditingController();
-    _conditionsFocusNode = FocusNode();
-    _dobController = TextEditingController();
-    _dobFocusNode = FocusNode();
-    _implantationDateController = TextEditingController();
-    _implantationDateFocusNode = FocusNode();
-    _genderController = TextEditingController();
-    _neuteredController = TextEditingController();
+    context.read<ChipRegistrationViewModel>().initialize();
   }
 
   @override
   void dispose() {
     super.dispose();
-    _chipNoController.dispose();
-    _chipNoFocusNode.dispose();
-    _nameController.dispose();
-    _nameFocusNode.dispose();
-    _specieController.dispose();
-    _specieFocusNode.dispose();
-    _breedController.dispose();
-    _breedFocusNode.dispose();
-    _colorController.dispose();
-    _colorFocusNode.dispose();
-    _conditionsController.dispose();
-    _conditionsFocusNode.dispose();
-    _dobController.dispose();
-    _dobFocusNode.dispose();
-    _implantationDateController.dispose();
-    _implantationDateFocusNode.dispose();
-    _neuteredController.dispose();
-    _genderController.dispose();
+    context.read<ChipRegistrationViewModel>().disposeControllers();
+  }
+
+  Future<Null> _selectDate(
+    BuildContext context,
+    TextEditingController controller, [
+    bool? implantation = false,
+  ]) async {
+    var chipRegistrationVM = context.read<ChipRegistrationViewModel>();
+
+    DateTime init = implantation!
+        ? chipRegistrationVM.initialImplantationDate
+        : chipRegistrationVM.initialDob;
+
+    final DateTime? date = await showDatePicker(
+        initialEntryMode: DatePickerEntryMode.input,
+        context: context,
+        initialDate: init,
+        firstDate: DateTime(1990),
+        lastDate: DateTime.now());
+
+    if (date != null && date != init) {
+      implantation
+          ? chipRegistrationVM.setImplantationDate(date)
+          : chipRegistrationVM.setDob(date);
+      controller.text = chipRegistrationVM.normalizeDate(date);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    var chipRegistrationVM = context.watch<ChipRegistrationViewModel>();
     return ResponsiveWidget(
+        resizeToAvoidBottomInset: true,
         appBar: AppBar(
           title: Text('Register A MicroChip'),
           leading: IconButton(
@@ -96,7 +71,7 @@ class _ChipRegistrationViewState extends State<ChipRegistrationView> {
               children: [
                 CustomSpacer(),
                 Text(
-                  "Pet's Details",
+                  "Animal's Details",
                   style: TextStyle(
                     fontSize: 20.sp,
                     fontWeight: FontWeight.w500,
@@ -110,15 +85,17 @@ class _ChipRegistrationViewState extends State<ChipRegistrationView> {
                   child: Column(
                     children: [
                       CustomTextField(
-                        controller: _chipNoController,
-                        focusNode: _chipNoFocusNode,
+                        errorText: chipRegistrationVM.chipNoError,
+                        controller: chipRegistrationVM.chipNoController,
+                        focusNode: chipRegistrationVM.chipNoFocusNode,
                         labelTextColor: Theme.of(context).buttonColor,
                         labelText: 'MicroChip Number',
                       ),
                       CustomSpacer(flex: 3),
                       CustomTextField(
-                        controller: _nameController,
-                        focusNode: _nameFocusNode,
+                        errorText: chipRegistrationVM.nameError,
+                        controller: chipRegistrationVM.nameController,
+                        focusNode: chipRegistrationVM.nameFocusNode,
                         labelTextColor: Theme.of(context).buttonColor,
                         labelText: 'Name',
                       ),
@@ -128,58 +105,76 @@ class _ChipRegistrationViewState extends State<ChipRegistrationView> {
                           {'key': 'Male', 'value': 'Male'},
                           {'key': 'Female', 'value': 'Female'},
                         ],
-                        controller: _genderController,
+                        controller: chipRegistrationVM.genderController,
                         label: 'Gender',
                       ),
                       CustomSpacer(flex: 3),
                       CustomDropDown(
                         items: [
-                          {'key': 'True', 'value': 'True'},
-                          {'key': 'False', 'value': 'False'},
+                          {'key': 'Yes', 'value': 'true'},
+                          {'key': 'No', 'value': 'false'},
                         ],
-                        controller: _neuteredController,
+                        controller: chipRegistrationVM.neuteredController,
                         label: 'Neutered',
                       ),
                       CustomSpacer(flex: 3),
                       CustomTextField(
-                        controller: _dobController,
-                        focusNode: _dobFocusNode,
+                        onTap: () {
+                          _selectDate(
+                              context, chipRegistrationVM.dobController);
+                        },
+                        readOnly: true,
+                        errorText: chipRegistrationVM.dobError,
+                        controller: chipRegistrationVM.dobController,
+                        focusNode: chipRegistrationVM.dobFocusNode,
                         labelTextColor: Theme.of(context).buttonColor,
                         labelText: 'Date of Birth',
                       ),
                       CustomSpacer(flex: 3),
                       CustomTextField(
-                        controller: _specieController,
-                        focusNode: _specieFocusNode,
+                        errorText: chipRegistrationVM.specieError,
+                        controller: chipRegistrationVM.specieController,
+                        focusNode: chipRegistrationVM.specieFocusNode,
                         labelTextColor: Theme.of(context).buttonColor,
                         labelText: 'Specie',
                       ),
                       CustomSpacer(flex: 3),
                       CustomTextField(
-                        controller: _breedController,
-                        focusNode: _breedFocusNode,
+                        errorText: chipRegistrationVM.breedError,
+                        controller: chipRegistrationVM.breedController,
+                        focusNode: chipRegistrationVM.breedFocusNode,
                         labelTextColor: Theme.of(context).buttonColor,
                         labelText: 'Breed',
                       ),
                       CustomSpacer(flex: 3),
                       CustomTextField(
-                        controller: _colorController,
-                        focusNode: _colorFocusNode,
+                        errorText: chipRegistrationVM.colorError,
+                        controller: chipRegistrationVM.colorController,
+                        focusNode: chipRegistrationVM.colorFocusNode,
                         labelTextColor: Theme.of(context).buttonColor,
                         labelText: 'Colour/ Markings',
                       ),
                       CustomSpacer(flex: 3),
                       CustomTextField(
-                        controller: _conditionsController,
-                        focusNode: _conditionsFocusNode,
+                        controller: chipRegistrationVM.conditionsController,
+                        focusNode: chipRegistrationVM.conditionsFocusNode,
                         labelTextColor: Theme.of(context).buttonColor,
                         labelText:
                             'Notable Conditions (i.e medical conditions)',
                       ),
                       CustomSpacer(flex: 3),
                       CustomTextField(
-                        controller: _implantationDateController,
-                        focusNode: _implantationDateFocusNode,
+                        onTap: () {
+                          _selectDate(
+                              context,
+                              chipRegistrationVM.implantationDateController,
+                              true);
+                        },
+                        readOnly: true,
+                        errorText: chipRegistrationVM.implantationDateError,
+                        controller:
+                            chipRegistrationVM.implantationDateController,
+                        focusNode: chipRegistrationVM.implantationDateFocusNode,
                         labelTextColor: Theme.of(context).buttonColor,
                         labelText: 'MicroChip Implantation Date',
                       ),
@@ -187,6 +182,14 @@ class _ChipRegistrationViewState extends State<ChipRegistrationView> {
                     ],
                   ),
                 ),
+                CustomSpacer(flex: 5),
+                Button(
+                  text: 'Register Chip',
+                  onTap: () {
+                    if (chipRegistrationVM.validateTextFields()) {}
+                  },
+                ),
+                CustomSpacer(flex: 3),
               ],
             ),
           );

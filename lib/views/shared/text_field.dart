@@ -9,6 +9,8 @@ class CustomTextField extends StatefulWidget {
   final TextInputType? inputType;
   final Color? labelTextColor;
   final String? errorText;
+  final bool? readOnly;
+  final Function? onTap;
 
   const CustomTextField({
     Key? key,
@@ -17,9 +19,11 @@ class CustomTextField extends StatefulWidget {
     this.hintText: '',
     this.errorText,
     this.isPassword: false,
+    this.readOnly: false,
     this.focusNode,
     this.inputType,
     this.labelTextColor,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -32,10 +36,16 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      readOnly: widget.readOnly!,
       keyboardType: widget.inputType,
       controller: widget.controller,
       focusNode: widget.focusNode,
       obscureText: widget.isPassword ? _obscureText : false,
+      onTap: () {
+        if (widget.onTap != null) {
+          widget.onTap!();
+        }
+      },
       decoration: InputDecoration(
         suffixIcon: widget.isPassword
             ? IconButton(
