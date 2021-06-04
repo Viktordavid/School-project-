@@ -11,7 +11,6 @@ class AnimalDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ResponsiveWidget(
-        backgroundColor: Theme.of(context).primaryColorLight,
         appBar: AppBar(
           title: Text('Animal Details'),
           leading: IconButton(

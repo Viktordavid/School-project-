@@ -18,7 +18,7 @@ class CustomList extends StatelessWidget {
         Text(
           label,
           style: Theme.of(context).textTheme.headline6!.copyWith(
-                color: Theme.of(context).primaryColorDark,
+                color: Theme.of(context).primaryColorLight,
               ),
         ),
         CustomSpacer(flex: 1),
@@ -30,7 +30,7 @@ class CustomList extends StatelessWidget {
             softWrap: true,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
-              color: Theme.of(context).primaryColorDark,
+              color: Theme.of(context).primaryColorLight,
               fontSize: 18.sp,
               fontWeight: FontWeight.w400,
             ),
