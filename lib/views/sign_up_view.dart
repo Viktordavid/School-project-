@@ -52,13 +52,20 @@ class _SignUpViewState extends State<SignUpView> {
     _passwordFocus.dispose();
   }
 
+  Future<void> openDialog(String desc) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: Text(desc),
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ResponsiveWidget(
-      onWillPop: (){
-         context.read<SignUpViewModel>().goBack();
-      },
-      builder: (context, size) {
+    var signUpVM = context.watch<SignUpViewModel>();
+    return ResponsiveWidget(builder: (context, size) {
       return Container(
         padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
         height: size.height,
@@ -100,14 +107,17 @@ class _SignUpViewState extends State<SignUpView> {
             ),
             CustomSpacer(flex: 6),
             Button(
+              loading: signUpVM.loading,
               onTap: () {
                 if (_emailController.text.isEmpty) {
                   _emailError = 'Enter your email addresss';
                   setState(() {});
-                }
-                if (_passwordController.text.isEmpty) {
+                } else if (_passwordController.text.isEmpty) {
                   _passwordError = 'Enter your email addresss';
                   setState(() {});
+                } else if (_emailError == null && _passwordError == null) {
+                  signUpVM.register(_emailController.text,
+                      _passwordController.text, showDialog);
                 }
               },
               text: 'Sign Up',
