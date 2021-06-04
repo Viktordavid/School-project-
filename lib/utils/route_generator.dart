@@ -19,11 +19,13 @@ class RouteGenerator {
       case ChipRegistrationViewRoute:
         return _getPageRoute(ChipRegistrationView());
       case MicroChipsViewRoute:
-        return _getPageRoute(
-            MicroChipsView(details: AnimalDetail.animalDetails));
+        List<AnimalDetail> animalDetails =
+            settings.arguments as List<AnimalDetail>;
+        return _getPageRoute(MicroChipsView(details: animalDetails));
       case RegistrationHistoryViewRoute:
-        return _getPageRoute(
-            RegistrationHistoryView(details: AnimalDetail.animalDetails));
+        List<AnimalDetail> animalDetails =
+            settings.arguments as List<AnimalDetail>;
+        return _getPageRoute(RegistrationHistoryView(details: animalDetails));
       case AnimalDetailsViewRoute:
         AnimalDetail animalDetail = settings.arguments as AnimalDetail;
         return _getPageRoute(AnimalDetailsView(animalDetail: animalDetail));
