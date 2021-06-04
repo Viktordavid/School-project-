@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'School Project',
           theme: ThemeData(
+            fontFamily: 'Roboto',
             backgroundColor: Color(0xff277da1),
             highlightColor: Color(0xff43aa8b),
             splashColor: Color(0xff43aa8b),
