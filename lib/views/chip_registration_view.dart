@@ -84,7 +84,7 @@ class _ChipRegistrationViewState extends State<ChipRegistrationView> {
                         controller: chipRegistrationVM.chipNoController,
                         focusNode: chipRegistrationVM.chipNoFocusNode,
                         labelTextColor: Theme.of(context).buttonColor,
-                        labelText: 'MicroChip Number',
+                        labelText: 'MicroChip ID',
                       ),
                       CustomSpacer(flex: 3),
                       CustomTextField(
@@ -104,14 +104,6 @@ class _ChipRegistrationViewState extends State<ChipRegistrationView> {
                         label: 'Gender',
                       ),
                       CustomSpacer(flex: 3),
-                      CustomDropDown(
-                        items: [
-                          {'key': 'Yes', 'value': 'true'},
-                          {'key': 'No', 'value': 'false'},
-                        ],
-                        controller: chipRegistrationVM.neuteredController,
-                        label: 'Neutered',
-                      ),
                       CustomSpacer(flex: 3),
                       CustomTextField(
                         onTap: () {
@@ -126,20 +118,13 @@ class _ChipRegistrationViewState extends State<ChipRegistrationView> {
                         labelText: 'Date of Birth',
                       ),
                       CustomSpacer(flex: 3),
-                      CustomTextField(
-                        errorText: chipRegistrationVM.specieError,
-                        controller: chipRegistrationVM.specieController,
-                        focusNode: chipRegistrationVM.specieFocusNode,
-                        labelTextColor: Theme.of(context).buttonColor,
-                        labelText: 'Specie',
-                      ),
                       CustomSpacer(flex: 3),
                       CustomTextField(
                         errorText: chipRegistrationVM.breedError,
                         controller: chipRegistrationVM.breedController,
                         focusNode: chipRegistrationVM.breedFocusNode,
                         labelTextColor: Theme.of(context).buttonColor,
-                        labelText: 'Breed',
+                        labelText: 'Type',
                       ),
                       CustomSpacer(flex: 3),
                       CustomTextField(
@@ -147,7 +132,7 @@ class _ChipRegistrationViewState extends State<ChipRegistrationView> {
                         controller: chipRegistrationVM.colorController,
                         focusNode: chipRegistrationVM.colorFocusNode,
                         labelTextColor: Theme.of(context).buttonColor,
-                        labelText: 'Colour/ Markings',
+                        labelText: 'Colour',
                       ),
                       CustomSpacer(flex: 3),
                       CustomTextField(

@@ -10,8 +10,6 @@ class ChipRegistrationViewModel extends BaseViewModel {
   late FocusNode chipNoFocusNode;
   late TextEditingController nameController;
   late FocusNode nameFocusNode;
-  late TextEditingController specieController;
-  late FocusNode specieFocusNode;
   late TextEditingController breedController;
   late FocusNode breedFocusNode;
   late TextEditingController colorController;
@@ -23,15 +21,12 @@ class ChipRegistrationViewModel extends BaseViewModel {
   late TextEditingController implantationDateController;
   late FocusNode implantationDateFocusNode;
   late TextEditingController genderController;
-  late TextEditingController neuteredController;
 
   void initialize() {
     chipNoController = TextEditingController();
     chipNoFocusNode = FocusNode();
     nameController = TextEditingController();
     nameFocusNode = FocusNode();
-    specieController = TextEditingController();
-    specieFocusNode = FocusNode();
     breedController = TextEditingController();
     breedFocusNode = FocusNode();
     colorController = TextEditingController();
@@ -43,7 +38,6 @@ class ChipRegistrationViewModel extends BaseViewModel {
     implantationDateController = TextEditingController();
     implantationDateFocusNode = FocusNode();
     genderController = TextEditingController();
-    neuteredController = TextEditingController();
   }
 
   void disposeControllers() {
@@ -51,8 +45,6 @@ class ChipRegistrationViewModel extends BaseViewModel {
     chipNoFocusNode.dispose();
     nameController.dispose();
     nameFocusNode.dispose();
-    specieController.dispose();
-    specieFocusNode.dispose();
     breedController.dispose();
     breedFocusNode.dispose();
     colorController.dispose();
@@ -63,13 +55,11 @@ class ChipRegistrationViewModel extends BaseViewModel {
     dobFocusNode.dispose();
     implantationDateController.dispose();
     implantationDateFocusNode.dispose();
-    neuteredController.dispose();
     genderController.dispose();
   }
 
   String? chipNoError;
   String? nameError;
-  String? specieError;
   String? breedError;
   String? colorError;
   String? dobError;
@@ -96,9 +86,8 @@ class ChipRegistrationViewModel extends BaseViewModel {
   bool validateTextFields() {
     chipNoError = chipNoController.text.isEmpty ? 'Enter chip number' : null;
     nameError = nameController.text.isEmpty ? "Enter animal's name" : null;
-    specieError = specieController.text.isEmpty ? "Enter specie" : null;
-    breedError = breedController.text.isEmpty ? "Enter breed" : null;
-    colorError = colorController.text.isEmpty ? "Enter colour/markings" : null;
+    breedError = breedController.text.isEmpty ? "Enter type" : null;
+    colorError = colorController.text.isEmpty ? "Enter colour" : null;
     implantationDateError = implantationDateController.text.isEmpty
         ? "Enter microchip's implantation date"
         : null;
@@ -108,7 +97,6 @@ class ChipRegistrationViewModel extends BaseViewModel {
 
     return chipNoError == null &&
         nameError == null &&
-        specieError == null &&
         breedError == null &&
         colorError == null &&
         implantationDateError == null &&
