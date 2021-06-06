@@ -22,8 +22,8 @@ class DashboardViewModel extends BaseViewModel {
             toFirestore: (cow, _) => cow.toMap(),
           );
 
-      ref.get().then((value) {
-        _animalDetails = value.docs.map((e) => e.data()).toList();
+      ref.snapshots().listen((event) {
+        _animalDetails = event.docs.map((e) => e.data()).toList();
         searchVM.initAnimalDetails(_animalDetails);
         notifyListeners();
       });
