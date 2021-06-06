@@ -8,6 +8,7 @@ GetIt locator = GetIt.instance;
 void setupLocator() async {
   try {
     locator.registerLazySingleton(() => NavigationService());
+    locator.registerLazySingleton(() => StorageService());
 
     await Firebase.initializeApp();
   } catch (e) {

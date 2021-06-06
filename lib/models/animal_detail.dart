@@ -1,4 +1,5 @@
 class AnimalDetail {
+  final String userId;
   final String name;
   final String chipNo;
   final String gender;
@@ -9,6 +10,7 @@ class AnimalDetail {
   final String chipImplantationDate;
 
   AnimalDetail({
+    required this.userId,
     required this.name,
     required this.chipNo,
     required this.gender,
@@ -21,6 +23,7 @@ class AnimalDetail {
 
   factory AnimalDetail.fromMap(Map<String, dynamic> json) {
     return AnimalDetail(
+      userId: json['userId'],
       name: json['name'],
       chipNo: json['chipId'],
       gender: json['gender'],
@@ -34,6 +37,7 @@ class AnimalDetail {
 
   Map<String, dynamic> toMap() {
     return {
+      'userId': this.userId,
       'name': this.name,
       'chipId': this.chipNo,
       'gender': this.gender,
@@ -44,22 +48,4 @@ class AnimalDetail {
       'implantationDate': this.chipImplantationDate,
     };
   }
-
-  static AnimalDetail animalDetail = AnimalDetail(
-      name: 'Cattle',
-      chipNo: '24294814',
-      gender: 'Male',
-      dob: '24/03/2021',
-      type: 'Sokoto Bororo',
-      colour: 'Black',
-      conditions: 'Healthy',
-      chipImplantationDate: '24/06/2021');
-
-  static List<AnimalDetail> animalDetails = [
-    animalDetail,
-    animalDetail,
-    animalDetail,
-    animalDetail,
-    animalDetail,
-  ];
 }

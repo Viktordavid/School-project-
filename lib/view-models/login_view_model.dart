@@ -14,8 +14,13 @@ class LoginViewModel extends BaseViewModel {
   Future<void> login(String email, String password, Function showDialog) async {
     try {
       setLoading(true);
-      UserCredential _ = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
+      User? user = (await FirebaseAuth.instance
+              .signInWithEmailAndPassword(email: email, password: password))
+          .user;
+
+      if (user != null) {
+        await storageService.write(user.uid, 'userId');
+      }
       setLoading(false);
     } on FirebaseAuthException catch (e) {
       setLoading(false);

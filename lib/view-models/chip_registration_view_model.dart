@@ -116,6 +116,7 @@ class ChipRegistrationViewModel extends BaseViewModel {
   void register(Function showDialog) async {
     try {
       setLoading(true);
+      String? userId = await storageService.read('userId');
       final ref = FirebaseFirestore.instance
           .collection('cows')
           .withConverter<AnimalDetail>(
@@ -123,20 +124,25 @@ class ChipRegistrationViewModel extends BaseViewModel {
                 AnimalDetail.fromMap(snapshot.data()!),
             toFirestore: (cow, _) => cow.toMap(),
           );
-      await ref.add(AnimalDetail(
-        chipNo: chipNoController!.text,
-        name: nameController!.text,
-        dob: dobController!.text,
-        gender: genderController!.text,
-        colour: colorController!.text,
-        chipImplantationDate: implantationDateController!.text,
-        type: breedController!.text,
-        conditions: conditionsController!.text,
-      ));
+
+      if (userId != null) {
+        await ref.add(AnimalDetail(
+          userId: userId,
+          chipNo: chipNoController!.text,
+          name: nameController!.text,
+          dob: dobController!.text,
+          gender: genderController!.text,
+          colour: colorController!.text,
+          chipImplantationDate: implantationDateController!.text,
+          type: breedController!.text,
+          conditions: conditionsController!.text,
+        ));
+
+        disposeControllers();
+        goBack();
+        showDialog("MicroChip registered successfully");
+      }
       setLoading(false);
-      disposeControllers();
-      goBack();
-      showDialog("MicroChip registered successfully");
     } catch (e) {
       setLoading(false);
       showDialog("MicroChip registration failed", ok: false);

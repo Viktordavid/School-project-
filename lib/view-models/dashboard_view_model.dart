@@ -12,10 +12,13 @@ class DashboardViewModel extends BaseViewModel {
 
   ///Sets up a StreamSubscription which can be listened to for new cow documents
   ///added on Firestore
-  void getAnimalDetails(SearchViewModel searchVM) {
+  void getAnimalDetails(SearchViewModel searchVM) async {
     try {
+      String? userId = await storageService.read('userId');
+
       final ref = FirebaseFirestore.instance
           .collection('cows')
+          .where('userId', isEqualTo: userId)
           .withConverter<AnimalDetail>(
             fromFirestore: (snapshot, _) =>
                 AnimalDetail.fromMap(snapshot.data()!),

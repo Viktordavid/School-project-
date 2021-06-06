@@ -6,8 +6,13 @@ import 'package:school_project/utils/utils.dart';
 ///All view models must extends this class.
 class BaseViewModel extends ChangeNotifier {
   late NavigationService navigationService;
+  late StorageService storageService;
 
-  BaseViewModel({NavigationService? navigationService}) {
+  BaseViewModel({
+    NavigationService? navigationService,
+    StorageService? storageService,
+  }) {
     this.navigationService = navigationService ?? locator<NavigationService>();
+    this.storageService = storageService ?? locator<StorageService>();
   }
 }
