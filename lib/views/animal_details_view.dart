@@ -38,12 +38,8 @@ class AnimalDetailsView extends StatelessWidget {
                   desc: animalDetail.chipImplantationDate,
                 ),
                 CustomList(label: 'Date of Birth', desc: animalDetail.dob),
-                CustomList(label: 'Specie', desc: animalDetail.specie),
-                CustomList(label: 'Breed', desc: animalDetail.breed),
+                CustomList(label: 'Type', desc: animalDetail.type),
                 CustomList(label: 'Gender', desc: animalDetail.gender),
-                CustomList(
-                    label: 'Neutered',
-                    desc: animalDetail.neutered! ? 'Yes' : 'No'),
                 CustomList(
                     label: 'Colour or Markings', desc: animalDetail.colour),
                 CustomList(

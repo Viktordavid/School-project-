@@ -9,9 +9,7 @@ class RegistrationHistoryViewModel extends BaseViewModel {
   }
 
   String getDescription(AnimalDetail animalDetail) {
-    return animalDetail.neutered!
-        ? 'Neutered ${animalDetail.gender} ${animalDetail.breed} with MicroChip no ${animalDetail.chipNo}'
-        : 'Non-neutered ${animalDetail.gender} ${animalDetail.breed} with MicroChip no ${animalDetail.chipNo}';
+    return '${animalDetail.type} with MicroChip no ${animalDetail.chipNo}';
   }
 
   void navigateToDetailsView(dynamic arg) {

@@ -2,10 +2,8 @@ class AnimalDetail {
   final String name;
   final String chipNo;
   final String gender;
-  final bool? neutered;
   final String dob;
-  final String specie;
-  final String breed;
+  final String type;
   final String colour;
   final String conditions;
   final String chipImplantationDate;
@@ -14,10 +12,8 @@ class AnimalDetail {
     required this.name,
     required this.chipNo,
     required this.gender,
-    this.neutered: false,
     required this.dob,
-    required this.specie,
-    required this.breed,
+    required this.type,
     required this.colour,
     required this.conditions,
     required this.chipImplantationDate,
@@ -26,29 +22,26 @@ class AnimalDetail {
   factory AnimalDetail.fromMap(Map<String, dynamic> json) {
     return AnimalDetail(
       name: json['name'],
-      chipNo: json['chipNo'],
+      chipNo: json['chipId'],
       gender: json['gender'],
       dob: json['dob'],
-      specie: json['specie'],
-      breed: json['breed'],
+      type: json['type'],
       colour: json['colour'],
-      conditions: json['conditions'] ?? '',
-      chipImplantationDate: json['chipImplantationDate'],
+      conditions: json['conditions'],
+      chipImplantationDate: json['implantationDate'],
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'name': this.name,
-      'chipNo': this.chipNo,
+      'chipId': this.chipNo,
       'gender': this.gender,
-      'neutered': this.neutered,
       'dob': this.dob,
-      'specie': this.specie,
-      'breed': this.breed,
+      'type': this.type,
       'colour': this.colour,
       'conditions': this.conditions,
-      'chipImplantationDate': this.chipImplantationDate,
+      'implantationDate': this.chipImplantationDate,
     };
   }
 
@@ -57,8 +50,7 @@ class AnimalDetail {
       chipNo: '24294814',
       gender: 'Male',
       dob: '24/03/2021',
-      specie: 'Sokoto Bororo',
-      breed: 'Sokoto Bororo',
+      type: 'Sokoto Bororo',
       colour: 'Black',
       conditions: 'Healthy',
       chipImplantationDate: '24/06/2021');
