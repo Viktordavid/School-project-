@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomDropDown extends StatefulWidget {
   final List<Map<String, String>> items;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String label;
 
   const CustomDropDown({
@@ -24,7 +24,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
   void initState() {
     super.initState();
     _value = widget.items.first['value']!;
-    widget.controller.text = _value;
+    if (widget.controller != null) widget.controller!.text = _value;
   }
 
   @override
@@ -52,8 +52,8 @@ class _CustomDropDownState extends State<CustomDropDown> {
             )
             .toList(),
         onChanged: (String? value) {
-          widget.controller.text = value!;
-          _value = value;
+          if (widget.controller != null) widget.controller!.text = value!;
+          _value = value!;
           setState(() {});
         },
         decoration: InputDecoration(

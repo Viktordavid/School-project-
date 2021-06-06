@@ -44,10 +44,10 @@ class DashboardViewModel extends BaseViewModel {
     try {
       switch (route) {
         case RegistrationHistoryViewRoute:
-          navigationService.pushNamed(route, arg: AnimalDetail.animalDetails);
+          navigationService.pushNamed(route);
           break;
         case MicroChipsViewRoute:
-          navigationService.pushNamed(route, arg: AnimalDetail.animalDetails);
+          navigationService.pushNamed(route);
           break;
         case LoginViewRoute:
           await logout();

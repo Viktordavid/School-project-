@@ -18,7 +18,7 @@ class _ChipRegistrationViewState extends State<ChipRegistrationView> {
 
   Future<Null> _selectDate(
     BuildContext context,
-    TextEditingController controller, [
+    TextEditingController? controller, [
     bool? implantation = false,
   ]) async {
     var chipRegistrationVM = context.read<ChipRegistrationViewModel>();
@@ -38,8 +38,31 @@ class _ChipRegistrationViewState extends State<ChipRegistrationView> {
       implantation
           ? chipRegistrationVM.setImplantationDate(date)
           : chipRegistrationVM.setDob(date);
-      controller.text = chipRegistrationVM.normalizeDate(date);
+      controller!.text = chipRegistrationVM.normalizeDate(date);
     }
+  }
+
+  Future _openDialog(String message, [bool? ok = true]) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  ok! ? Icons.check_circle : Icons.warning,
+                  color: ok ? Colors.green : Colors.red,
+                ),
+                CustomSpacer(flex: 3),
+                Text(
+                  message,
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          );
+        });
   }
 
   @override
@@ -164,9 +187,12 @@ class _ChipRegistrationViewState extends State<ChipRegistrationView> {
                 ),
                 CustomSpacer(flex: 5),
                 Button(
+                  loading: chipRegistrationVM.loading,
                   text: 'Register Chip',
                   onTap: () {
-                    if (chipRegistrationVM.validateTextFields()) {}
+                    if (chipRegistrationVM.validateTextFields()) {
+                      chipRegistrationVM.register(_openDialog);
+                    }
                   },
                 ),
                 CustomSpacer(flex: 3),
