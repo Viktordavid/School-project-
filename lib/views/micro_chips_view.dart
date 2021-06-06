@@ -35,8 +35,8 @@ class MicroChipsView extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Container(
-                              height: 30.h,
-                              width: 30.h,
+                              height: 20.h,
+                              width: 20.h,
                               child: Image.asset('assets/images/chip.png'),
                             ),
                             CustomSpacer(horizontal: true),
