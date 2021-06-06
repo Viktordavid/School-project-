@@ -72,19 +72,30 @@ class _SignUpViewState extends State<SignUpView> {
         width: size.width,
         child: ListView(
           children: [
-            CustomSpacer(flex: 15),
-            FlutterLogo(size: 50),
+            CustomSpacer(flex: 10),
+            Container(
+              height: 80.h,
+              width: 100.w,
+              child: Image.asset('assets/images/animal.png',
+                  color: Theme.of(context).primaryColorLight),
+            ),
             CustomSpacer(flex: 5),
             Text(
-              'AVD MicroChip Services',
+              'Get started with Animal Track',
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6!
+                  .copyWith(color: Theme.of(context).primaryColorLight),
             ),
             CustomSpacer(flex: 1),
             Text(
-              'on the UK PETtrac Database',
+              'Sign up to continue',
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context)
+                  .textTheme
+                  .subtitle1!
+                  .copyWith(color: Theme.of(context).primaryColorLight),
             ),
             CustomSpacer(flex: 5),
             CustomTextField(
@@ -130,7 +141,10 @@ class _SignUpViewState extends State<SignUpView> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text("Already have an account?",
-                    style: Theme.of(context).textTheme.subtitle1),
+                    style: Theme.of(context)
+                        .textTheme
+                        .subtitle1!
+                        .copyWith(color: Theme.of(context).primaryColorLight)),
                 CustomSpacer(horizontal: true, flex: 1),
                 GestureDetector(
                   onTap: () {

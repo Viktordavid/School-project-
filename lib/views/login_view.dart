@@ -74,19 +74,30 @@ class _LoginViewState extends State<LoginView> {
         width: size.width,
         child: ListView(
           children: [
-            CustomSpacer(flex: 15),
-            FlutterLogo(size: 50),
+            CustomSpacer(flex: 10),
+            Container(
+              height: 80.h,
+              width: 100.w,
+              child: Image.asset('assets/images/animal.png',
+                  color: Theme.of(context).primaryColorLight),
+            ),
             CustomSpacer(flex: 5),
             Text(
-              'AVD MicroChip Services',
+              'Welcome to Animal Track',
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6!
+                  .copyWith(color: Theme.of(context).primaryColorLight),
             ),
             CustomSpacer(flex: 1),
             Text(
-              'on the UK PETtrac Database',
+              'Login to continue',
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context)
+                  .textTheme
+                  .subtitle1!
+                  .copyWith(color: Theme.of(context).primaryColorLight),
             ),
             CustomSpacer(flex: 5),
             CustomTextField(

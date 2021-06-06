@@ -39,7 +39,7 @@ class _SplashScreenViewState extends State<SplashScreenView> {
                       color: Theme.of(context).primaryColorLight)),
               CustomSpacer(),
               Text(
-                'Animal Tracker',
+                'Animal Track',
                 style: Theme.of(context)
                     .textTheme
                     .headline5!
