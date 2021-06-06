@@ -9,7 +9,7 @@ class RegistrationHistoryViewModel extends BaseViewModel {
   }
 
   String getDescription(AnimalDetail animalDetail) {
-    return '${animalDetail.type} with MicroChip ID: ${animalDetail.chipNo}';
+    return '${animalDetail.gender} ${animalDetail.type} with MicroChip ID: ${animalDetail.chipNo}';
   }
 
   void navigateToDetailsView(dynamic arg) {

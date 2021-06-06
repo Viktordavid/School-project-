@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:school_project/models/models.dart';
 import 'package:school_project/view-models/view_models.dart';
 import 'package:school_project/views/shared/shared.dart';
 
 class MicroChipsView extends StatelessWidget {
-  final List<AnimalDetail> details;
-  const MicroChipsView({Key? key, required this.details}) : super(key: key);
+  const MicroChipsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var dashboardVM = context.watch<DashboardViewModel>();
     return ResponsiveWidget(
         appBar: AppBar(
           title: Text('My MicroChips'),
@@ -25,9 +24,9 @@ class MicroChipsView extends StatelessWidget {
             width: size.width,
             child: ListView.builder(
                 padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-                itemCount: details.length,
+                itemCount: dashboardVM.animalDetails.length,
                 itemBuilder: (context, index) {
-                  var animalDetail = details[index];
+                  var animalDetail = dashboardVM.animalDetails[index];
                   return Column(
                     children: [
                       ListTile(
