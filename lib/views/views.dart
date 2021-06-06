@@ -8,3 +8,4 @@ export 'package:school_project/views/micro_chips_view.dart';
 export 'package:school_project/views/registration_history_view.dart';
 export 'package:school_project/views/auth_bridge_view.dart';
 export 'package:school_project/views/search_view.dart';
+export 'package:school_project/views/support_view.dart';

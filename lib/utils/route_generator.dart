@@ -22,6 +22,8 @@ class RouteGenerator {
         return _getPageRoute(ChipRegistrationView());
       case SearchViewRoute:
         return _getPageRoute(SearchView());
+      case SupportViewRoute:
+        return _getPageRoute(SupportView());
       case MicroChipsViewRoute:
         return _getPageRoute(MicroChipsView());
       case RegistrationHistoryViewRoute:

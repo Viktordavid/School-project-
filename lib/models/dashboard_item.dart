@@ -36,8 +36,8 @@ class DashboardItem {
     ),
     DashboardItem(
       icon: Icons.phone,
-      title: 'Contact and Support',
-      route: '',
+      title: 'Contact Support',
+      route: SupportViewRoute,
     ),
     DashboardItem(
       icon: Icons.exit_to_app,

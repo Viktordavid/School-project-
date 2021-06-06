@@ -14,5 +14,6 @@ class AppProvider {
     ChangeNotifierProvider(create: (_) => MicroChipsViewModel()),
     ChangeNotifierProvider(create: (_) => RegistrationHistoryViewModel()),
     ChangeNotifierProvider(create: (_) => SearchViewModel()),
+    ChangeNotifierProvider(create: (_) => SupportViewModel()),
   ];
 }
