@@ -119,18 +119,18 @@ class _LoginViewState extends State<LoginView> {
               inputType: TextInputType.emailAddress,
             ),
             CustomSpacer(flex: 4),
-            Align(
-              alignment: Alignment.centerRight,
-              child: GestureDetector(
-                onTap: () {},
-                child: Text('Forgot password?',
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle1!
-                      .copyWith(color: Theme.of(context).primaryColorLight),
-                ),
-              ),
-            ),
+            // Align(
+            //   alignment: Alignment.centerRight,
+            //   child: GestureDetector(
+            //     onTap: () {},
+            //     child: Text('Forgot password?',
+            //       style: Theme.of(context)
+            //           .textTheme
+            //           .subtitle1!
+            //           .copyWith(color: Theme.of(context).primaryColorLight),
+            //     ),
+            //   ),
+            // ),
             CustomSpacer(flex: 6),
             Button(
               loading: loginVM.loading,
@@ -155,9 +155,13 @@ class _LoginViewState extends State<LoginView> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Don't have an account?",
-                    style: Theme.of(context).textTheme.subtitle1!
-                  .copyWith(color: Theme.of(context).primaryColorLight),),
+                Text(
+                  "Don't have an account?",
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle1!
+                      .copyWith(color: Theme.of(context).primaryColorLight),
+                ),
                 CustomSpacer(horizontal: true, flex: 1),
                 GestureDetector(
                   onTap: () {

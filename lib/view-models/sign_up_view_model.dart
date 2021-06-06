@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:school_project/utils/utils.dart';
 import 'package:school_project/view-models/base_view_model.dart';
 
 class SignUpViewModel extends BaseViewModel {
@@ -18,12 +19,17 @@ class SignUpViewModel extends BaseViewModel {
       String email, String password, Function showDialog) async {
     try {
       setLoading(true);
-      UserCredential _ =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      User? user = (await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
-      );
+      ))
+          .user;
+
+      if (user != null) {
+        await storageService.write(user.uid, 'userId');
+      }
       setLoading(false);
+      navigationService.pushNamed(DashboardViewRoute);
     } on FirebaseAuthException catch (e) {
       setLoading(false);
       if (e.code == 'weak-password') {

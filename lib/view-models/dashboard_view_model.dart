@@ -54,6 +54,7 @@ class DashboardViewModel extends BaseViewModel {
           break;
         case LoginViewRoute:
           await logout();
+          navigationService.pushReplacementNamed(LoginViewRoute);
           break;
         default:
           navigationService.pushNamed(route);
