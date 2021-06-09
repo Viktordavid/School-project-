@@ -7,7 +7,7 @@ class SupportViewModel extends BaseViewModel {
     navigationService.goBack();
   }
 
-  void placeCall([String? url = 'tel:08000000000']) async {
+  void placeCall([String? url = 'tel:09120982054']) async {
     try {
       if (await canLaunch(url!)) {
         await launch(url);
