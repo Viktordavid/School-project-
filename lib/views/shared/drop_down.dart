@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomDropDown extends StatefulWidget {
+  final String? value;
   final List<Map<String, String>> items;
   final TextEditingController? controller;
   final String label;
@@ -10,6 +11,7 @@ class CustomDropDown extends StatefulWidget {
     Key? key,
     required this.items,
     required this.controller,
+    this.value,
     required this.label,
   }) : super(key: key);
 
@@ -23,7 +25,12 @@ class _CustomDropDownState extends State<CustomDropDown> {
   @override
   void initState() {
     super.initState();
-    _value = widget.items.first['value']!;
+    if (widget.value != null && widget.value!.isNotEmpty) {
+      _value = widget.value!;
+    } else {
+      _value = widget.items.first['value']!;
+    }
+
     if (widget.controller != null) widget.controller!.text = _value;
   }
 

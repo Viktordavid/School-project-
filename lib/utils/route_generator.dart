@@ -9,28 +9,38 @@ class RouteGenerator {
   static Route onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case SplashScreenViewRoute:
-        return _getPageRoute(SplashScreenView());
+        return _getPageRoute(SplashScreenView(), SplashScreenViewRoute);
       case AuthBridgeViewRoute:
-        return _getPageRoute(AuthBridgeView());
+        return _getPageRoute(AuthBridgeView(), AuthBridgeViewRoute);
       case LoginViewRoute:
-        return _getPageRoute(LoginView());
+        return _getPageRoute(LoginView(), LoginViewRoute);
       case SignUpViewRoute:
-        return _getPageRoute(SignUpView());
+        return _getPageRoute(SignUpView(), SignUpViewRoute);
       case DashboardViewRoute:
-        return _getPageRoute(DashboardView());
+        return _getPageRoute(DashboardView(), DashboardViewRoute);
       case ChipRegistrationViewRoute:
-        return _getPageRoute(ChipRegistrationView());
+        if (settings.arguments != null) {
+          AnimalDetail animalDetail = settings.arguments as AnimalDetail;
+          return _getPageRoute(
+            ChipRegistrationView(detail: animalDetail, isEdit: true),
+            ChipRegistrationViewRoute,
+            animalDetail,
+          );
+        }
+        return _getPageRoute(ChipRegistrationView(), ChipRegistrationViewRoute);
       case SearchViewRoute:
-        return _getPageRoute(SearchView());
+        return _getPageRoute(SearchView(), SearchViewRoute);
       case SupportViewRoute:
-        return _getPageRoute(SupportView());
+        return _getPageRoute(SupportView(), SupportViewRoute);
       case MicroChipsViewRoute:
-        return _getPageRoute(MicroChipsView());
+        return _getPageRoute(MicroChipsView(), MicroChipsViewRoute);
       case RegistrationHistoryViewRoute:
-        return _getPageRoute(RegistrationHistoryView());
+        return _getPageRoute(
+            RegistrationHistoryView(), RegistrationHistoryViewRoute);
       case AnimalDetailsViewRoute:
         AnimalDetail animalDetail = settings.arguments as AnimalDetail;
-        return _getPageRoute(AnimalDetailsView(animalDetail: animalDetail));
+        return _getPageRoute(AnimalDetailsView(animalDetail: animalDetail),
+            AnimalDetailsViewRoute, animalDetail);
       default:
         return _getPageRoute(_errorPage);
     }

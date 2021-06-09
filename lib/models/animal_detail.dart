@@ -1,4 +1,5 @@
 class AnimalDetail {
+  final String id;
   final String userId;
   final String name;
   final String chipNo;
@@ -9,7 +10,8 @@ class AnimalDetail {
   final String conditions;
   final String chipImplantationDate;
 
-  AnimalDetail({
+  const AnimalDetail({
+    this.id = '',
     required this.userId,
     required this.name,
     required this.chipNo,
@@ -21,8 +23,9 @@ class AnimalDetail {
     required this.chipImplantationDate,
   });
 
-  factory AnimalDetail.fromMap(Map<String, dynamic> json) {
+  factory AnimalDetail.fromMap(Map<String, dynamic> json, String id) {
     return AnimalDetail(
+      id: id,
       userId: json['userId'],
       name: json['name'],
       chipNo: json['chipId'],

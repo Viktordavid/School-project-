@@ -19,6 +19,27 @@ class AnimalDetailsView extends StatelessWidget {
               context.read<AnimalDetailsViewModel>().goBack();
             },
           ),
+          actions: [
+            TextButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.resolveWith(
+                  (states) => Theme.of(context).backgroundColor.withOpacity(.3),
+                ),
+                shape: MaterialStateProperty.resolveWith(
+                  (states) => RoundedRectangleBorder(),
+                ),
+                minimumSize: MaterialStateProperty.resolveWith(
+                  (states) => Size(20.w, 30.h),
+                ),
+              ),
+              child: Text('Update'),
+              onPressed: () {
+                context
+                    .read<AnimalDetailsViewModel>()
+                    .navigateToChipRegistration(animalDetail);
+              },
+            )
+          ],
         ),
         builder: (context, size) {
           return Container(

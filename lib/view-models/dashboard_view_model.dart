@@ -21,7 +21,7 @@ class DashboardViewModel extends BaseViewModel {
           .where('userId', isEqualTo: userId)
           .withConverter<AnimalDetail>(
             fromFirestore: (snapshot, _) =>
-                AnimalDetail.fromMap(snapshot.data()!),
+                AnimalDetail.fromMap(snapshot.data()!, snapshot.id),
             toFirestore: (cow, _) => cow.toMap(),
           );
 

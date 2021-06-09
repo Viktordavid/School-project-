@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:school_project/models/models.dart';
+import 'package:school_project/utils/utils.dart';
 import 'package:school_project/view-models/base_view_model.dart';
 
 class ChipRegistrationViewModel extends BaseViewModel {
@@ -32,22 +33,23 @@ class ChipRegistrationViewModel extends BaseViewModel {
   late FocusNode? implantationDateFocusNode;
   late TextEditingController? genderController;
 
-  void initialize() {
-    chipNoController = TextEditingController();
+  void initialize({AnimalDetail detail = defaultAnimalDetails}) {
+    chipNoController = TextEditingController(text: detail.chipNo);
     chipNoFocusNode = FocusNode();
-    nameController = TextEditingController();
+    nameController = TextEditingController(text: detail.name);
     nameFocusNode = FocusNode();
-    breedController = TextEditingController();
+    breedController = TextEditingController(text: detail.type);
     breedFocusNode = FocusNode();
-    colorController = TextEditingController();
+    colorController = TextEditingController(text: detail.colour);
     colorFocusNode = FocusNode();
-    conditionsController = TextEditingController();
+    conditionsController = TextEditingController(text: detail.conditions);
     conditionsFocusNode = FocusNode();
-    dobController = TextEditingController();
+    dobController = TextEditingController(text: detail.dob);
     dobFocusNode = FocusNode();
-    implantationDateController = TextEditingController();
+    implantationDateController =
+        TextEditingController(text: detail.chipImplantationDate);
     implantationDateFocusNode = FocusNode();
-    genderController = TextEditingController();
+    genderController = TextEditingController(text: detail.gender);
   }
 
   void disposeControllers() {
@@ -113,6 +115,43 @@ class ChipRegistrationViewModel extends BaseViewModel {
         dobError == null;
   }
 
+  void update(String id, Function showDialog) async {
+    try {
+      setLoading(true);
+      String? userId = await storageService.read('userId');
+      final ref = FirebaseFirestore.instance
+          .collection('cows')
+          .withConverter<AnimalDetail>(
+            fromFirestore: (snapshot, _) =>
+                AnimalDetail.fromMap(snapshot.data()!, snapshot.id),
+            toFirestore: (cow, _) => cow.toMap(),
+          );
+
+      if (userId != null) {
+        await ref.doc(id).update(AnimalDetail(
+              userId: userId,
+              chipNo: chipNoController!.text,
+              name: nameController!.text,
+              dob: dobController!.text,
+              gender: genderController!.text,
+              colour: colorController!.text,
+              chipImplantationDate: implantationDateController!.text,
+              type: breedController!.text,
+              conditions: conditionsController!.text,
+            ).toMap());
+
+        disposeControllers();
+        navigationService.popUntil(MicroChipsViewRoute);
+        showDialog("Animal details updated successfully");
+      }
+      setLoading(false);
+    } catch (e) {
+      setLoading(false);
+      showDialog("Animal details update failed", ok: false);
+      print(e);
+    }
+  }
+
   void register(Function showDialog) async {
     try {
       setLoading(true);
@@ -121,7 +160,7 @@ class ChipRegistrationViewModel extends BaseViewModel {
           .collection('cows')
           .withConverter<AnimalDetail>(
             fromFirestore: (snapshot, _) =>
-                AnimalDetail.fromMap(snapshot.data()!),
+                AnimalDetail.fromMap(snapshot.data()!, snapshot.id),
             toFirestore: (cow, _) => cow.toMap(),
           );
 

@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:school_project/models/models.dart';
+import 'package:school_project/utils/utils.dart';
 import 'package:school_project/view-models/view_models.dart';
 import 'package:school_project/views/shared/shared.dart';
 
 class ChipRegistrationView extends StatefulWidget {
-  const ChipRegistrationView({Key? key}) : super(key: key);
+  final AnimalDetail detail;
+  final bool isEdit;
+  const ChipRegistrationView({
+    Key? key,
+    this.detail = defaultAnimalDetails,
+    this.isEdit = false,
+  }) : super(key: key);
 
   @override
   _ChipRegistrationViewState createState() => _ChipRegistrationViewState();
@@ -13,7 +21,7 @@ class _ChipRegistrationViewState extends State<ChipRegistrationView> {
   @override
   void initState() {
     super.initState();
-    context.read<ChipRegistrationViewModel>().initialize();
+    context.read<ChipRegistrationViewModel>().initialize(detail: widget.detail);
   }
 
   Future<Null> _selectDate(
@@ -71,7 +79,7 @@ class _ChipRegistrationViewState extends State<ChipRegistrationView> {
     return ResponsiveWidget(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
-          title: Text('Register A MicroChip'),
+          title: Text(widget.isEdit ? 'Edit Details' : 'Register A MicroChip'),
           leading: IconButton(
             icon: Icon(Icons.keyboard_backspace),
             onPressed: () {
@@ -119,6 +127,9 @@ class _ChipRegistrationViewState extends State<ChipRegistrationView> {
                       ),
                       CustomSpacer(flex: 3),
                       CustomDropDown(
+                        value: (chipRegistrationVM.genderController ??
+                                TextEditingController())
+                            .text,
                         items: [
                           {'key': 'Male', 'value': 'Male'},
                           {'key': 'Female', 'value': 'Female'},
@@ -188,10 +199,13 @@ class _ChipRegistrationViewState extends State<ChipRegistrationView> {
                 CustomSpacer(flex: 5),
                 Button(
                   loading: chipRegistrationVM.loading,
-                  text: 'Register Chip',
+                  text: widget.isEdit ? 'Update Chip' : 'Register Chip',
                   onTap: () {
                     if (chipRegistrationVM.validateTextFields()) {
-                      chipRegistrationVM.register(_openDialog);
+                      widget.isEdit
+                          ? chipRegistrationVM.update(
+                              widget.detail.id, _openDialog)
+                          : chipRegistrationVM.register(_openDialog);
                     }
                   },
                 ),
