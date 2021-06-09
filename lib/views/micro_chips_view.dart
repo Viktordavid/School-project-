@@ -22,54 +22,64 @@ class MicroChipsView extends StatelessWidget {
           return Container(
             height: size.height,
             width: size.width,
-            child: ListView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-                itemCount: dashboardVM.animalDetails.length,
-                itemBuilder: (context, index) {
-                  var animalDetail = dashboardVM.animalDetails[index];
-                  return Column(
-                    children: [
-                      ListTile(
-                        tileColor: Theme.of(context).primaryColorLight,
-                        leading: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Container(
-                              height: 20.h,
-                              width: 20.h,
-                              child: Image.asset('assets/images/chip.png'),
+            child: dashboardVM.animalDetails.length == 0
+                ? Center(
+                    child: Text(
+                    "You have not registered any micro chip",
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                          color: Theme.of(context).primaryColorLight,
+                        ),
+                  ))
+                : ListView.builder(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+                    itemCount: dashboardVM.animalDetails.length,
+                    itemBuilder: (context, index) {
+                      var animalDetail = dashboardVM.animalDetails[index];
+                      return Column(
+                        children: [
+                          ListTile(
+                            tileColor: Theme.of(context).primaryColorLight,
+                            leading: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Container(
+                                  height: 20.h,
+                                  width: 20.h,
+                                  child: Image.asset('assets/images/chip.png'),
+                                ),
+                                CustomSpacer(horizontal: true),
+                                VerticalDivider(
+                                  indent: 12.h,
+                                  endIndent: 12.h,
+                                  width: 5.w,
+                                  color: Theme.of(context)
+                                      .primaryColorDark
+                                      .withOpacity(.4),
+                                )
+                              ],
                             ),
-                            CustomSpacer(horizontal: true),
-                            VerticalDivider(
-                              indent: 12.h,
-                              endIndent: 12.h,
-                              width: 5.w,
-                              color: Theme.of(context)
-                                  .primaryColorDark
-                                  .withOpacity(.4),
-                            )
-                          ],
-                        ),
-                        title: Container(
-                          width: size.width,
-                          child: Text(
-                            animalDetail.chipNo,
+                            title: Container(
+                              width: size.width,
+                              child: Text(
+                                animalDetail.chipNo,
+                              ),
+                            ),
+                            trailing: Icon(
+                              Icons.arrow_forward_ios,
+                              color: Theme.of(context).primaryColorDark,
+                            ),
+                            onTap: () {
+                              context
+                                  .read<MicroChipsViewModel>()
+                                  .navigateToDetailsView(animalDetail);
+                            },
                           ),
-                        ),
-                        trailing: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Theme.of(context).primaryColorDark,
-                        ),
-                        onTap: () {
-                          context
-                              .read<MicroChipsViewModel>()
-                              .navigateToDetailsView(animalDetail);
-                        },
-                      ),
-                      CustomSpacer(),
-                    ],
-                  );
-                }),
+                          CustomSpacer(),
+                        ],
+                      );
+                    }),
           );
         });
   }

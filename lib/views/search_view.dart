@@ -66,58 +66,68 @@ class SearchView extends StatelessWidget {
                   ),
                 ),
                 CustomSpacer(flex: 5),
-                Expanded(
-                  child: ListView.builder(
-                      padding: EdgeInsets.symmetric(horizontal: 10.w),
-                      itemCount: reactiveSearchVM.searchResults.length,
-                      itemBuilder: (context, index) {
-                        var animalDetail =
-                            reactiveSearchVM.searchResults[index];
-                        return Column(
-                          children: [
-                            ListTile(
-                              tileColor: Theme.of(context).primaryColorLight,
-                              leading: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Container(
-                                    height: 20.h,
-                                    width: 20.h,
-                                    child:
-                                        Image.asset('assets/images/chip.png'),
-                                  ),
-                                  CustomSpacer(horizontal: true),
-                                  VerticalDivider(
-                                    indent: 12.h,
-                                    endIndent: 12.h,
-                                    width: 5.w,
-                                    color: Theme.of(context)
-                                        .primaryColorDark
-                                        .withOpacity(.4),
-                                  )
-                                ],
-                              ),
-                              title: Container(
-                                width: size.width,
-                                child: Text(
-                                  animalDetail.chipNo,
-                                ),
-                              ),
-                              trailing: Icon(
-                                Icons.arrow_forward_ios,
-                                color: Theme.of(context).primaryColorDark,
-                              ),
-                              onTap: () {
-                                context
-                                    .read<MicroChipsViewModel>()
-                                    .navigateToDetailsView(animalDetail);
-                              },
+                reactiveSearchVM.searchResults.length == 0
+                    ? Center(
+                        child: Text(
+                        "You have not registered any micro chip",
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                              color: Theme.of(context).primaryColorLight,
                             ),
-                            CustomSpacer(),
-                          ],
-                        );
-                      }),
-                ),
+                      ))
+                    : Expanded(
+                        child: ListView.builder(
+                            padding: EdgeInsets.symmetric(horizontal: 10.w),
+                            itemCount: reactiveSearchVM.searchResults.length,
+                            itemBuilder: (context, index) {
+                              var animalDetail =
+                                  reactiveSearchVM.searchResults[index];
+                              return Column(
+                                children: [
+                                  ListTile(
+                                    tileColor:
+                                        Theme.of(context).primaryColorLight,
+                                    leading: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Container(
+                                          height: 20.h,
+                                          width: 20.h,
+                                          child: Image.asset(
+                                              'assets/images/chip.png'),
+                                        ),
+                                        CustomSpacer(horizontal: true),
+                                        VerticalDivider(
+                                          indent: 12.h,
+                                          endIndent: 12.h,
+                                          width: 5.w,
+                                          color: Theme.of(context)
+                                              .primaryColorDark
+                                              .withOpacity(.4),
+                                        )
+                                      ],
+                                    ),
+                                    title: Container(
+                                      width: size.width,
+                                      child: Text(
+                                        animalDetail.chipNo,
+                                      ),
+                                    ),
+                                    trailing: Icon(
+                                      Icons.arrow_forward_ios,
+                                      color: Theme.of(context).primaryColorDark,
+                                    ),
+                                    onTap: () {
+                                      context
+                                          .read<MicroChipsViewModel>()
+                                          .navigateToDetailsView(animalDetail);
+                                    },
+                                  ),
+                                  CustomSpacer(),
+                                ],
+                              );
+                            }),
+                      ),
                 CustomSpacer(flex: 3),
               ],
             ),

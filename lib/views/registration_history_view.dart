@@ -22,36 +22,45 @@ class RegistrationHistoryView extends StatelessWidget {
           return Container(
               height: size.height,
               width: size.width,
-              child: ListView.builder(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-                  itemCount: dashboardVM.animalDetails.length,
-                  itemBuilder: (context, index) {
-                    var detail = dashboardVM.animalDetails[index];
-                    return GestureDetector(
-                      onTap: () {
-                        context
-                            .read<RegistrationHistoryViewModel>()
-                            .navigateToDetailsView(detail);
-                      },
-                      child: Card(
-                        child: Container(
-                          margin: EdgeInsets.symmetric(vertical: 10.h),
-                          padding: EdgeInsets.symmetric(horizontal: 10.w),
-                          width: size.width,
-                          child: Text(
+              child: dashboardVM.animalDetails.length == 0
+                  ? Center(
+                      child: Text(
+                      "You have not registered any micro chip",
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                            color: Theme.of(context).primaryColorLight,
+                          ),
+                    ))
+                  : ListView.builder(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 10.w, vertical: 10.h),
+                      itemCount: dashboardVM.animalDetails.length,
+                      itemBuilder: (context, index) {
+                        var detail = dashboardVM.animalDetails[index];
+                        return GestureDetector(
+                          onTap: () {
                             context
                                 .read<RegistrationHistoryViewModel>()
-                                .getDescription(detail),
-                            style: TextStyle(
-                              fontSize: 16.sp,
-                              color: Theme.of(context).primaryColorDark,
+                                .navigateToDetailsView(detail);
+                          },
+                          child: Card(
+                            child: Container(
+                              margin: EdgeInsets.symmetric(vertical: 10.h),
+                              padding: EdgeInsets.symmetric(horizontal: 10.w),
+                              width: size.width,
+                              child: Text(
+                                context
+                                    .read<RegistrationHistoryViewModel>()
+                                    .getDescription(detail),
+                                style: TextStyle(
+                                  fontSize: 16.sp,
+                                  color: Theme.of(context).primaryColorDark,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                    );
-                  }));
+                        );
+                      }));
         });
   }
 }
