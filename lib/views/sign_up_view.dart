@@ -99,6 +99,7 @@ class _SignUpViewState extends State<SignUpView> {
             ),
             CustomSpacer(flex: 5),
             CustomTextField(
+              useLightText: true,
               controller: _emailController,
               focusNode: _emailFocus,
               errorText: _emailError,
@@ -108,6 +109,7 @@ class _SignUpViewState extends State<SignUpView> {
             ),
             CustomSpacer(),
             CustomTextField(
+              useLightText: true,
               isPassword: true,
               controller: _passwordController,
               focusNode: _passwordFocus,

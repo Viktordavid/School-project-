@@ -101,6 +101,7 @@ class _LoginViewState extends State<LoginView> {
             ),
             CustomSpacer(flex: 5),
             CustomTextField(
+              useLightText: true,
               controller: _emailController,
               focusNode: _emailFocus,
               errorText: _emailError,
@@ -111,6 +112,7 @@ class _LoginViewState extends State<LoginView> {
             CustomSpacer(),
             CustomTextField(
               isPassword: true,
+              useLightText: true,
               controller: _passwordController,
               focusNode: _passwordFocus,
               errorText: _passwordError,
