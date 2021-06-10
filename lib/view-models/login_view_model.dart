@@ -22,6 +22,7 @@ class LoginViewModel extends BaseViewModel {
         await storageService.write(user.uid, 'userId');
       }
       setLoading(false);
+      navigationService.pushNamed(DashboardViewRoute);
     } on FirebaseAuthException catch (e) {
       setLoading(false);
       if (e.code == 'user-not-found') {
